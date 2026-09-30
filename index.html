@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grill Heist - Premium Peri Peri Chicken in London</title>
+    <meta name="description" content="Fresh peri peri chicken & burgers made daily in London. Three locations: Finchley, Putney, Bexleyheath. Order online now.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #DC143C;
+            --secondary: #1a1a1a;
+            --accent: #FFD700;
+            --light: #f5f5f5;
+            --text: #333;
+            --border: #eee;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cta-button:hover {
+            background: #b01030;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.3);
+        }
+
+        /* Hero Section with Video Background */
+        .hero {
+            position: relative;
+            height: 100vh;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 700px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: slideInUp 0.8s ease-out 0.1s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: 2px solid white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            border: 2px solid white;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Why Us Section */
+        .why-us {
+            padding: 80px 2rem;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Locations Section */
+        .locations {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left;
+        }
+
+        .location-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .location-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.15);
+        }
+
+        .location-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .location-address {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .location-phone {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .order-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .order-btn:hover {
+            background: #b01030;
+            transform: scale(1.05);
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .menu .section-header h2 {
+            color: white;
+        }
+
+        .menu .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .menu-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .menu-item p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        /* Social Section */
+        .social {
+            padding: 60px 2rem;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .social h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .menu-items, .features, .locations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">🔥 The Grill Heist</a>
+        <ul class="nav-links">
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#contact" class="cta-button">Order Now</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section with Video Background -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="./hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>The Ultimate Peri Peri Experience</h1>
+            <p>Fresh, bold, and dangerously delicious. Hand-crafted peri peri chicken & burgers across London.</p>
+            <div class="hero-buttons">
+                <a href="#locations" class="btn-primary">Find Our Location</a>
+                <a href="#menu" class="btn-secondary">Explore Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us" id="why">
+        <div class="section-header">
+            <h2>Why Choose The Grill Heist?</h2>
+            <p>20+ years of expertise in bringing authentic peri peri to London</p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🌶️</div>
+                <h3>Fresh Peri Peri Daily</h3>
+                <p>Our unique peri peri sauces are made fresh in-house every single day using the finest global blends.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🍗</div>
+                <h3>Premium Sourcing</h3>
+                <p>Chicken from trusted local producers. Buns baked fresh daily. Quality ingredients, always.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast & Flavourful</h3>
+                <p>Quick service without compromising on taste. Get your fix faster than you can say "heist".</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Expert Crafted</h3>
+                <p>Created by a team with 20+ years of collective experience in the food industry.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations" id="locations">
+        <div class="section-header">
+            <h2>Find Us</h2>
+            <p>Three prime locations across London—more coming soon</p>
+        </div>
+        <div class="locations-grid">
+            <div class="location-card">
+                <div class="location-name">Finchley</div>
+                <div class="location-address">
+                    728 High Rd<br>
+                    Finchley, N12 9QD
+                </div>
+                <div class="location-phone">020 8445 5224</div>
+                <a href="tel:02084455224" class="order-btn">Call Now</a>
+            </div>
+            <div class="location-card">
+                <div class="location-name">Putney</div>
+                <div class="location-address">
+                    205 Lower Richmond Rd<br>
+                    London, SW15 1HJ
+                </div>
+                <div class="location-phone">020 3876 6698</div>
+                <a href="tel:02038766698" class="order-btn">Call Now</a>
+            </div>
+            <div class="location-card">
+                <div class="location-name">Bexleyheath</div>
+                <div class="location-address">
+                    50 Avenue Rd<br>
+                    Bexleyheath, DA7 4EG
+                </div>
+                <div class="location-phone">020 3971 6923</div>
+                <a href="tel:02039716923" class="order-btn">Call Now</a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="font-size: 1.1rem; color: var(--primary); font-weight: 600;">🚀 Reading location coming soon</p>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="section-header">
+            <h2>Our Menu</h2>
+            <p>Signature dishes crafted to perfection</p>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <h3>🔥 Peri Peri Chicken</h3>
+                <p>Succulent grilled chicken infused with our legendary peri peri sauce. Available in mild, medium, or extra hot.</p>
+            </div>
+            <div class="menu-item">
+                <h3>🍔 The Heist Burger</h3>
+                <p>Premium beef patty, fresh lettuce, tomato, and our signature peri peri mayo on a daily-baked bun.</p>
+            </div>
+            <div class="menu-item">
+                <h3>🌯 Peri Peri Wrap</h3>
+                <p>Tender chicken wrapped with fresh veggies and peri peri sauce. Perfect for on-the-go.</p>
+            </div>
+            <div class="menu-item">
+                <h3>🍗 Loaded Fries</h3>
+                <p>Crispy fries topped with seasoned chicken, our house peri peri sauce, and fresh toppings.</p>
+            </div>
+            <div class="menu-item">
+                <h3>🥗 Fresh Sides</h3>
+                <p>Coleslaw, rice, grilled vegetables, and more to complement your main.</p>
+            </div>
+            <div class="menu-item">
+                <h3>🍷 Cold Beverages</h3>
+                <p>Refresh yourself with our selection of ice-cold drinks perfectly paired with spicy food.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 1rem;">View our full menu with prices</p>
+            <a href="https://www.thegrillheist.co.uk/menus" target="_blank" class="cta-button" style="display: inline-block;">Full Menu</a>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social" id="contact">
+        <h3>Stay Updated & Follow The Heist</h3>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/grillheist.uk" target="_blank" class="social-link" title="Instagram">📸</a>
+            <a href="https://www.tiktok.com/@grillheistuk" target="_blank" class="social-link" title="TikTok">🎬</a>
+            <a href="mailto:grillheist@gmail.com" class="social-link" title="Email">✉️</a>
+        </div>
+        <p style="color: #666;">Subscribe for exclusive offers, new menu items, and behind-the-scenes content</p>
+        <form style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <input type="email" placeholder="Enter your email" style="padding: 0.8rem 1.2rem; border: 2px solid var(--primary); border-radius: 6px; width: 300px; font-size: 0.95rem;" required>
+            <button type="submit" class="cta-button">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>The Grill Heist</strong> | Premium Peri Peri Chicken in London</p>
+        <p>📧 <a href="mailto:grillheist@gmail.com">grillheist@gmail.com</a></p>
+        <p style="margin-top: 1.5rem; opacity: 0.6;">© 2024 The Grill Heist. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Force video to play
+        window.addEventListener('load', function() {
+            const video = document.querySelector('.hero-video');
+            if (video) {
+                video.play().catch(function(error) {
+                    console.log('Video autoplay prevented:', error);
+                });
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Email form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thanks for subscribing! We\'ll keep you updated with exclusive offers.');
+                this.reset();
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature, .location-card, .menu-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
